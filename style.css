@@ -1039,6 +1039,31 @@ body[data-theme="dark"] .faq-toggle {
     .faq-item.active .faq-answer {
         max-height: 400px;
     }
+    
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-col {
+        text-align: center;
+    }
+    
+    .footer-col h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer .social-links {
+        justify-content: center;
+    }
 }
 
 /* Footer Redesign */
@@ -2007,5 +2032,22 @@ body[data-theme="dark"] .faq-toggle {
     
     #registration .reminder .time {
         justify-content: center;
+    }
+
+    /* Section Padding Adjustments */
+    section, 
+    .learnings-section, 
+    .cta-section, 
+    .carousel-section,
+    .why-choose-us,
+    #testimonials,
+    #contact,
+    .admission-section,
+    .why-section,
+    .mission-section,
+    .values-section,
+    .stats-section,
+    .team-section {
+        padding: 60px 5vw !important;
     }
 }
