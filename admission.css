@@ -8,9 +8,9 @@
     min-height: 70vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-    padding: 120px 8vw 60px;
+    justify-content: center;
+    text-align: center;
+    padding: 180px 8vw 60px;
     background: linear-gradient(135deg, #1a1a4e 0%, #2c3f7e 40%, #4a3f9f 70%, #7c3aed 100%);
     overflow: hidden;
 }
@@ -104,13 +104,13 @@
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
     max-width: 600px;
-    margin: 0 0 40px;
+    margin: 0 auto 40px;
     animation: fadeSlideDown 0.8s 0.4s ease both;
 }
 
 .hero-stats {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 50px;
     animation: fadeSlideDown 0.8s 0.6s ease both;
 }
@@ -713,11 +713,11 @@
 @media (max-width: 768px) {
     .admission-hero {
         min-height: 60dvh; /* Mobile Safari Fix */
-        padding: 300px 8vw 60px;
+        padding: 350px 8vw 60px;
         display: flex;
         align-items: flex-start;
-        justify-content: flex-start;
-        text-align: left;
+        justify-content: center;
+        text-align: center;
     }
 
     .admission-hero-content {
