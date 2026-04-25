@@ -2055,4 +2055,8 @@ body[data-theme="dark"] .faq-toggle {
     .team-section {
         padding: 60px 5vw !important;
     }
+    /* Mobile-only font size adjustments for small iOS devices */
+    input, textarea, select {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
+    }
 }

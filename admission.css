@@ -1,3 +1,7 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* ===== Admission Hero ===== */
 .admission-hero {
     position: relative;
@@ -707,8 +711,8 @@
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .admission-hero {
-        min-height: 55vh;
-        padding: 100px 5vw 50px;
+        min-height: 60dvh; /* Mobile Safari Fix */
+        padding: 120px 8vw 80px;
     }
 
     .admission-hero-content h1 {
@@ -807,5 +811,10 @@
 
     .admission-card {
         padding: 25px 16px;
+    }
+
+    /* Mobile-only font size adjustments for small iOS devices */
+    input, textarea, select {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
     }
 }
