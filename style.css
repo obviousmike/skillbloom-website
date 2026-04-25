@@ -229,6 +229,11 @@ nav .navigation ul li a.admission-btn:hover {
     background-position: center;
     background-attachment: fixed;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 #home::after {
@@ -324,8 +329,8 @@ nav .navigation ul li a.admission-btn:hover {
 
 #home .btn {
     display: flex;
-    gap: 20px;
     justify-content: center;
+    gap: 20px;
 }
 
 #home .btn a {
