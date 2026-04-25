@@ -129,6 +129,13 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('nav-up');
     }
     
+    // Transparent to solid transition
+    if (scrollTop > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+    
     lastScrollTop = scrollTop;
 });
 
