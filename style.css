@@ -143,6 +143,10 @@ nav{
     border-bottom: 1px solid var(--glass-border);
 }
 
+nav.nav-up {
+    transform: translateY(-100%);
+}
+
 
 nav img{
     width: 150px;

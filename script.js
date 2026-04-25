@@ -110,6 +110,28 @@ if (backToTopButton) {
     });
 }
 
+// Smart Navbar: Hide on scroll down, show on scroll up
+let lastScrollTop = 0;
+const navbar = document.querySelector('nav');
+const scrollThreshold = 10;
+
+window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Ignore small scrolls
+    if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
+    
+    if (scrollTop > lastScrollTop && scrollTop > 80) {
+        // Scrolling down
+        navbar.classList.add('nav-up');
+    } else {
+        // Scrolling up
+        navbar.classList.remove('nav-up');
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
 // FAQ Accordion functionality
 const faqItems = document.querySelectorAll('.faq-item');
 
