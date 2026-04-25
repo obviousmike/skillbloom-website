@@ -2025,7 +2025,7 @@ body[data-theme="dark"] .faq-toggle {
     
     #home h1 {
         font-size: 1.8rem;
-        margin-top: 80px;
+        margin-top: 160px;
     }
     
     #home p {
@@ -2044,7 +2044,7 @@ body[data-theme="dark"] .faq-toggle {
         flex-direction: column;
         text-align: center;
         gap: 40px;
-        padding-top: 100px !important;
+        padding-top: 200px !important;
     }
     
     #registration .reminder .time {

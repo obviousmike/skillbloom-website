@@ -712,7 +712,7 @@
 @media (max-width: 768px) {
     .admission-hero {
         min-height: 60dvh; /* Mobile Safari Fix */
-        padding: 180px 8vw 60px;
+        padding: 250px 8vw 60px;
         display: flex;
         align-items: flex-start;
         justify-content: center;
