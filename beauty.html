@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="School of Beauty and Cosmetology - Comprehensive beauty training including makeup artistry, hair styling, and skincare at SkillBloom." />
+    <meta name="keywords" content="beauty school, cosmetology, makeup artistry, hair styling, skincare" />
+    <meta property="og:title" content="School of Beauty and Cosmetology - SkillBloom" />
+    <title>Beauty & Cosmetology School - SkillBloom Training</title>
+    <link rel="icon" type="image/x-icon" href="img/Logo2.png">
+
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html"><img src="img/Logo2.png" alt="" /></a>
+      <div class="navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#schools">Schools</a></li>
+          <li><a href="index.html#levels">Course Levels</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+          <li><a href="admission.html" class="admission-btn">Admission</a></li>
+        </ul>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <button id="dark-mode-toggle" class="dark-mode-btn">🌙</button>
+    </nav>
+
+    <section id="school-detail">
+      <div class="school-header" style="background-image: url('img/sch of Beauty and cometology.jpeg')">
+        <div class="school-info-overlay">
+          <div class="school-info">
+            <h1>School of Beauty and Cosmetology</h1>
+            <p>
+              Become a skilled beauty professional with our comprehensive
+              cosmetology training.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="learnings-section">
+        <h2>What You Will Learn</h2>
+        <div class="learnings-grid">
+          <div class="learning-item">
+            <i class="fas fa-spa"></i>
+            <h3>Facial Treatments</h3>
+            <p>Master various facial treatments and skincare procedures.</p>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-cut"></i>
+            <h3>Hair Styling</h3>
+            <p>
+              Learn professional hair cutting, styling, and coloring techniques.
+            </p>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-magic"></i>
+            <h3>Makeup Artistry</h3>
+            <p>
+              Develop makeup application skills for various occasions and
+              styles.
+            </p>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-hand-paper"></i>
+            <h3>Nail Care</h3>
+            <p>Master manicure, pedicure, and nail art techniques.</p>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-eye"></i>
+            <h3>Brow Artistry</h3>
+            <p>Learn brow shaping, tinting, and styling techniques.</p>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-sparkles"></i>
+            <h3>Lash Extensions</h3>
+            <p>
+              Learn lash extension techniques and client consultation skills.
+            </p>
+          </div>
+          <div class="learning-item">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Health & Safety</h3>
+            <p>
+              Master safety protocols and regulatory compliance in cosmetology.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Start Your Beauty Career?</h2>
+        <p>
+          Join our professional cosmetology program and become a certified
+          beauty expert.
+        </p>
+        <a href="index.html#registration" class="cta-btn">Register Now</a>
+      </div>
+
+      <div class="carousel-section">
+        <h2>Explore Other Schools</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <a href="fashion.html" class="carousel-item">
+                <img src="img/sch fashion.png" alt="Fashion School" />
+                <div class="carousel-details">
+                  <h3>School of Fashion</h3>
+                  <p>Master fashion design</p>
+                </div>
+              </a>
+              <a href="art.html" class="carousel-item">
+                <img src="img/Sch of Art, craft.png" alt="Art School" />
+                <div class="carousel-details">
+                  <h3>School of Art, Craft & Design</h3>
+                  <p>Unleash your creativity</p>
+                </div>
+              </a>
+              <a href="entrepreneurship.html" class="carousel-item">
+                <img src="img/sch of entreprenurship.jpeg" alt="Entrepreneurship School" />
+                <div class="carousel-details">
+                  <h3>School of Entrepreneurship</h3>
+                  <p>Launch your business venture</p>
+                </div>
+              </a>
+              <a href="formulation.html" class="carousel-item">
+                <img src="img/sch of formulation.jpeg" alt="Formulation School" />
+                <div class="carousel-details">
+                  <h3>School of Formulation</h3>
+                  <p>Master product formulation</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="carousel-section">
+        <h2>Student Success Stories</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-item testimonial-item">
+                <div class="testimonial-content">
+                  <div class="testimonial-text">
+                    <p>"SkillBloom's beauty program transformed my life! I now run my own salon with confidence."</p>
+                    <h4>Amara Mensah</h4>
+                    <p class="student-role">Salon Owner</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item testimonial-item">
+                <div class="testimonial-content">
+                  <div class="testimonial-text">
+                    <p>"The makeup artistry course was outstanding. I've landed amazing freelance opportunities!"</p>
+                    <h4>Zainab Hassan</h4>
+                    <p class="student-role">Makeup Artist</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item testimonial-item">
+                <div class="testimonial-content">
+                  <div class="testimonial-text">
+                    <p>"Professional instructors, modern facilities, and real-world experience. Truly exceptional!"</p>
+                    <h4>Rebecca Okafor</h4>
+                    <p class="student-role">Beauty Therapist</p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item testimonial-item">
+                <div class="testimonial-content">
+                  <div class="testimonial-text">
+                    <p>"I got certified and now work at a luxury spa. Best investment I made!"</p>
+                    <h4>Patricia Anane</h4>
+                    <p class="student-role">Spa Specialist</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+      </div>
+
+      <div class="carousel-section">
+        <h2>Featured Programs</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-item program-item">
+                <div class="program-content">
+                  <i class="fas fa-spa"></i>
+                  <h3>Facial Treatments</h3>
+                  <p>Master facials and professional skincare procedures</p>
+                  <span class="duration">3 Months</span>
+                </div>
+              </div>
+              <div class="carousel-item program-item">
+                <div class="program-content">
+                  <i class="fas fa-cut"></i>
+                  <h3>Hair Styling</h3>
+                  <p>Professional cutting, styling, and coloring techniques</p>
+                  <span class="duration">4 Months</span>
+                </div>
+              </div>
+              <div class="carousel-item program-item">
+                <div class="program-content">
+                  <i class="fas fa-magic"></i>
+                  <h3>Makeup Artistry</h3>
+                  <p>Master makeup application for all occasions</p>
+                  <span class="duration">3 Months</span>
+                </div>
+              </div>
+              <div class="carousel-item program-item">
+                <div class="program-content">
+                  <i class="fas fa-hand-paper"></i>
+                  <h3>Nail Care</h3>
+                  <p>Manicure, pedicure, and nail art techniques</p>
+                  <span class="duration">2 Months</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col col-brand">
+          <img src="img/Logo2.png" alt="SkillBloom Logo" class="footer-logo" />
+          <p>
+            Empowering the next generation of creative entrepreneurs through
+            practical, industry-leading training.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="admission.html">Admissions</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Our Schools</h3>
+          <ul>
+            <li><a href="fashion.html">School of Fashion</a></li>
+            <li><a href="beauty.html">School of Beauty</a></li>
+            <li><a href="art.html">School of Art</a></li>
+            <li><a href="entrepreneurship.html">Business School</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Get In Touch</h3>
+          <div class="contact-info">
+            <p><i class="fas fa-map-marker-alt"></i> Kumasi, Ghana</p>
+            <p><i class="fas fa-phone"></i> +233 24 085 7129</p>
+            <p><i class="fas fa-envelope"></i> info@skillbloom.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 SkillBloom Training Institute. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/233240857129?text=Hi%20SkillBloom,%20I%20would%20like%20to%20know%20more%20about%20your%20courses"
+      target="_blank"
+      rel="noopener noreferrer"
+      id="floating-whatsapp"
+      title="WhatsApp Us Now"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button id="back-to-top" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+<parameter name="filePath"
+  >c:\Users\mikeo\Downloads\SkillBloom Website\beauty.html</parameter
+>
