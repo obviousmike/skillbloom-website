@@ -712,7 +712,7 @@
 @media (max-width: 768px) {
     .admission-hero {
         min-height: 60dvh; /* Mobile Safari Fix */
-        padding: 250px 8vw 60px;
+        padding: 300px 8vw 60px;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -723,19 +723,24 @@
     }
 
     .admission-hero-content h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .admission-hero-content > p {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        max-width: 100%;
     }
 
     .hero-stats {
-        gap: 30px;
+        gap: 20px;
     }
 
     .hero-stat-number {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+    }
+
+    .hero-stat-label {
+        font-size: 0.75rem;
     }
 
     .admission-section {
