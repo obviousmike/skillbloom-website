@@ -115,22 +115,6 @@ let lastScrollTop = 0;
 const navbar = document.querySelector('nav');
 const scrollThreshold = 10;
 
-window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Ignore small scrolls
-    if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
-    
-    // Transparent to solid transition
-    if (scrollTop > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    
-    lastScrollTop = scrollTop;
-});
-
 // FAQ Accordion functionality
 const faqItems = document.querySelectorAll('.faq-item');
 
