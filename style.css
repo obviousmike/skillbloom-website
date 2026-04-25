@@ -811,6 +811,17 @@ button[type="submit"].orange {
     margin-bottom: 20px;
 }
 
+#contact .hero-content h1 {
+    font-size: 3rem;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
 #contact .info-item i {
     font-size: 1.5rem;
     color: var(--primary-color);
@@ -1549,6 +1560,7 @@ body[data-theme="dark"] .faq-toggle {
     font-size: 1.2rem;
     max-width: 600px;
     line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .mission-section {
