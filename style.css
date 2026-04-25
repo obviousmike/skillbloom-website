@@ -1999,6 +1999,10 @@ body[data-theme="dark"] .faq-toggle {
         padding: 1vw 4vw;
     }
     
+    nav img {
+        width: 120px;
+    }
+    
     .hamburger {
         display: flex;
     }
