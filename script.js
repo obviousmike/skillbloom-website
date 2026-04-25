@@ -121,14 +121,6 @@ window.addEventListener('scroll', () => {
     // Ignore small scrolls
     if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
     
-    if (scrollTop > lastScrollTop && scrollTop > 80) {
-        // Scrolling down
-        navbar.classList.add('nav-up');
-    } else {
-        // Scrolling up
-        navbar.classList.remove('nav-up');
-    }
-    
     // Transparent to solid transition
     if (scrollTop > 50) {
         navbar.classList.add('scrolled');
