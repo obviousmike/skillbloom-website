@@ -363,17 +363,34 @@ nav .navigation ul li a.admission-btn:hover {
     text-align: center;
 }
 
+.section-header {
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.section-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
 .section-tag {
     display: inline-block;
     padding: 6px 16px;
-    background: rgba(44, 63, 126, 0.1);
+    background: var(--glass-bg);
     color: var(--primary-color);
+    border: 1px solid var(--glass-border);
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-soft);
 }
 
 .why-grid {
@@ -402,8 +419,9 @@ nav .navigation ul li a.admission-btn:hover {
 .why-icon {
     width: 60px;
     height: 60px;
-    background: rgba(44, 63, 126, 0.05);
+    background: var(--glass-bg);
     color: var(--primary-color);
+    border: 1px solid var(--glass-border);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -828,9 +846,6 @@ button[type="submit"].orange {
     transition: 0.3s ease;
 }
 
-#contact .contact-form button:hover {
-    /* Hover effect removed as per request - using pulse animation instead */
-}
 
 #testimonials {
     padding: 8vw 8vw;
