@@ -2042,6 +2042,10 @@ body[data-theme="dark"] .faq-toggle {
         padding-top: 200px !important;
     }
     
+    #registration .reminder h2 {
+        margin-top: 80px;
+    }
+    
     #registration .reminder .time {
         justify-content: center;
     }
