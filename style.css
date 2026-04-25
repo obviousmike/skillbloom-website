@@ -1966,8 +1966,13 @@ body[data-theme="dark"] .faq-toggle {
     }
 
     .school-header {
-        height: 40vh;
+        height: auto;
+        min-height: 40vh;
+        padding-top: 120px;
+        padding-bottom: 40px;
         background-attachment: scroll;
+        display: flex;
+        align-items: flex-start;
     }
 
     .about-hero {
