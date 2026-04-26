@@ -395,9 +395,7 @@
     animation: btnPulse 2s infinite;
 }
 
-.btn-submit:hover:not(:disabled) {
-    /* Hover effect removed as per request - using pulse animation instead */
-}
+
 
 @keyframes btnPulse {
     0% {
