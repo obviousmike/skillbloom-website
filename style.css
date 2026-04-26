@@ -14,6 +14,9 @@
     --glass-border: rgba(255, 255, 255, 0.5);
     --shadow-soft: 0 8px 30px rgba(44, 63, 126, 0.06);
     --shadow-hover: 0 20px 40px rgba(44, 63, 126, 0.1);
+
+
+    
     
     /* Fluid Typography Scale */
     --fs-h1: clamp(2.5rem, 5vw + 1rem, 4.5rem);
@@ -136,16 +139,16 @@ nav{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1vw 8vw;
+    padding: 0.6rem 8vw;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease;
     border-bottom: 1px solid var(--glass-border);
 }
 
 
 nav img{
-    width: 150px;
+    width: 120px;
     cursor: pointer;
 }
 
@@ -196,6 +199,7 @@ nav .navigation ul li a.admission-btn:hover {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .hamburger span {
@@ -204,6 +208,18 @@ nav .navigation ul li a.admission-btn:hover {
     background: var(--primary-color);
     margin: 3px 0;
     transition: 0.3s;
+}
+
+/* Reading Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: var(--secondary-color);
+    z-index: 1001;
+    width: 0%;
+    transition: width 0.1s ease-out;
 }
 
 .dark-mode-btn {
@@ -1345,6 +1361,41 @@ body[data-theme="dark"] .faq-toggle {
     animation: none;
 }
 
+/* Breadcrumb Navigation for Subpages */
+.breadcrumb-nav {
+    position: fixed;
+    top: 75px;
+    left: 8vw;
+    z-index: 998;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.breadcrumb-nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-nav a i {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.breadcrumb-nav a:hover {
+    color: var(--secondary-color);
+}
+
+.breadcrumb-nav span {
+    color: var(--text-light);
+    opacity: 0.6;
+}
+
 /* School Detail Page Styles */
 #school-detail {
     padding: 0;
@@ -2008,11 +2059,11 @@ body[data-theme="dark"] .faq-toggle {
     }
 
     nav {
-        padding: 1vw 4vw;
+        padding: 0.5rem 4vw;
     }
     
     nav img {
-        width: 120px;
+        width: 100px;
     }
     
     .hamburger {

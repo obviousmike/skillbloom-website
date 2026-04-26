@@ -1,9 +1,11 @@
 // Smooth scrolling for navigation links
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === "#") return;
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -11,6 +13,10 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+
+
+
 
 // Simple animation for elements on scroll
 const observerOptions = {
@@ -46,10 +52,13 @@ function updateCountdown() {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.querySelector('.date:nth-child(1)').innerHTML = `${days}<br>Days`;
-        document.querySelector('.date:nth-child(2)').innerHTML = `${hours}<br>Hours`;
-        document.querySelector('.date:nth-child(3)').innerHTML = `${minutes}<br>Mins`;
-        document.querySelector('.date:nth-child(4)').innerHTML = `${seconds}<br>Secs`;
+        const dateElements = document.querySelectorAll('.date');
+        if (dateElements.length >= 4) {
+            dateElements[0].innerHTML = `${days}<br>Days`;
+            dateElements[1].innerHTML = `${hours}<br>Hours`;
+            dateElements[2].innerHTML = `${minutes}<br>Mins`;
+            dateElements[3].innerHTML = `${seconds}<br>Secs`;
+        }
     }
 }
 
@@ -77,15 +86,17 @@ document.querySelectorAll('.navigation ul li a').forEach(link => {
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const body = document.body;
 
-darkModeToggle.addEventListener('click', () => {
-    body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    darkModeToggle.textContent = body.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('theme', body.getAttribute('data-theme'));
-});
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+        body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        darkModeToggle.textContent = body.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem('theme', body.getAttribute('data-theme'));
+    });
+}
 
 // Load saved theme
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
+if (savedTheme && darkModeToggle) {
     body.setAttribute('data-theme', savedTheme);
     darkModeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 }
@@ -114,6 +125,34 @@ if (backToTopButton) {
 let lastScrollTop = 0;
 const navbar = document.querySelector('nav');
 const scrollThreshold = 10;
+const progressBar = document.createElement('div');
+
+progressBar.className = 'progress-bar';
+document.body.appendChild(progressBar);
+
+window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Reading Progress Bar Logic
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (scrollTop / height) * 100;
+    progressBar.style.width = scrolled + "%";
+
+    // Smart Navbar: Hide on scroll down, show on scroll up
+    if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
+
+    // Don't hide navbar if mobile menu is open
+    if (navMenu && navMenu.classList.contains('active')) return;
+
+    if (!navbar) return;
+
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        navbar.style.transform = 'translateY(0)';
+    }
+    lastScrollTop = scrollTop;
+});
 
 // FAQ Accordion functionality
 const faqItems = document.querySelectorAll('.faq-item');
@@ -132,6 +171,8 @@ faqItems.forEach(item => {
         // Toggle current item
         item.classList.toggle('active');
     });
+
+    
 });
 
 // Carousel Functionality
@@ -169,9 +210,8 @@ function showSlide(n) {
 }
 
 // School Carousel Navigation
-function moveCarousel(direction) {
+function moveCarousel(direction, button) {
     // Find the closest carousel-track to the clicked button
-    const button = event.target;
     const carouselContainer = button.closest('.carousel-container');
     const track = carouselContainer.querySelector('.carousel-track');
     const items = track.querySelectorAll('.carousel-item');
@@ -203,4 +243,43 @@ function moveCarousel(direction) {
     // Apply transform
     track.style.transform = `translateX(${newX}px)`;
 }
-
+
+// Automatically add Breadcrumb Navigation on subpages
+window.addEventListener('DOMContentLoaded', () => {
+    const isHomepage = document.getElementById('home');
+    if (!isHomepage) {
+        const breadcrumbNav = document.createElement('div');
+        breadcrumbNav.className = 'breadcrumb-nav glass-card';
+        
+        const path = window.location.pathname.replace(/\/$/, "");
+        // Handle both /fashion and /fashion.html for Vercel clean URLs
+        const fileName = path.split('/').pop() || 'index.html';
+        const pageName = fileName.replace('.html', '').split('?')[0].split('#')[0].replace(/-/g, ' ');
+        
+        // Friendly name mapping
+        const pageTitles = {
+            'fashion': 'Fashion Design',
+            'beauty': 'Beauty & Cosmetology',
+            'art': 'Creative Art',
+            'entrepreneurship': 'Business',
+            'formulation': 'Product Formulation',
+            'admission': 'Admission',
+            'about': 'About Us'
+        };
+
+        let breadcrumbHTML = `<a href="index.html"><i class="fas fa-home"></i> Home</a> <span> / </span>`;
+        
+        // Check if it's a school page to add the intermediate step
+        const schoolPages = ['fashion', 'beauty', 'art', 'entrepreneurship', 'formulation'];
+        if (schoolPages.includes(pageName)) {
+            breadcrumbHTML += `<a href="index.html#schools">Schools</a> <span>/</span>`;
+        }
+
+        // Add current page
+        const currentTitle = pageTitles[pageName] || pageName.charAt(0).toUpperCase() + pageName.slice(1);
+        breadcrumbHTML += `<a href="#" style="color: var(--primary-color); font-weight: 700; pointer-events: none;">${currentTitle}</a>`;
+        
+        breadcrumbNav.innerHTML = breadcrumbHTML;
+        document.body.appendChild(breadcrumbNav);
+    }
+});

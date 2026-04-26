@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 180px 8vw 60px;
+    padding: 140px 8vw 60px;
     background: linear-gradient(135deg, #1a1a4e 0%, #2c3f7e 40%, #4a3f9f 70%, #7c3aed 100%);
     overflow: hidden;
 }
@@ -711,7 +711,7 @@
 @media (max-width: 768px) {
     .admission-hero {
         min-height: 60dvh; /* Mobile Safari Fix */
-        padding: 420px 8vw 60px;
+        padding: 110px 8vw 60px;
         display: flex;
         align-items: flex-start;
         justify-content: center;
