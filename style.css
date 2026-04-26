@@ -52,8 +52,8 @@ html {
 /* Glassmorphism Utilities */
 .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     box-shadow: var(--shadow-soft);
@@ -87,6 +87,9 @@ body{
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
 }
 
 h1, h2, h3, h4, h5, .logo-text {
@@ -130,17 +133,19 @@ nav{
     position: fixed;
     width: 100%;
     background-color: var(--nav-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 1vw 8vw;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    z-index: 1000;
+    z-index: 100;
     transition: all 0.3s ease;
     border-bottom: 1px solid var(--glass-border);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 
@@ -196,6 +201,14 @@ nav .navigation ul li a.admission-btn:hover {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 1001;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 8px;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .hamburger span {
@@ -204,6 +217,20 @@ nav .navigation ul li a.admission-btn:hover {
     background: var(--primary-color);
     margin: 3px 0;
     transition: 0.3s;
+    pointer-events: none;
+    display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 .dark-mode-btn {
@@ -212,6 +239,9 @@ nav .navigation ul li a.admission-btn:hover {
     font-size: 1.5rem;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 1001;
+    position: relative;
+    padding: 10px;
 }
 
 .dark-mode-btn:hover {
@@ -589,8 +619,8 @@ button[type="submit"].orange {
 
 #schools .schools {
     background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: 24px;
     box-shadow: var(--shadow-soft);
@@ -883,8 +913,8 @@ button[type="submit"].orange {
 
 #testimonials .testimonial {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     padding: 30px;
     border-radius: 16px;
@@ -1440,8 +1470,8 @@ body[data-theme="dark"] .faq-toggle {
 
 .learning-item {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     padding: 2rem;
     border-radius: 16px;
@@ -1609,8 +1639,8 @@ body[data-theme="dark"] .faq-toggle {
 
 .value-item {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     padding: 2rem;
     border-radius: 16px;
@@ -1698,8 +1728,8 @@ body[data-theme="dark"] .faq-toggle {
 
 .team-member {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     padding: 2rem;
     border-radius: 16px;
@@ -1837,8 +1867,8 @@ body[data-theme="dark"] .faq-toggle {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     cursor: pointer;
     display: flex;
@@ -2009,40 +2039,74 @@ body[data-theme="dark"] .faq-toggle {
 
     nav {
         padding: 1vw 4vw;
+        z-index: 101;
     }
     
     nav img {
         width: 120px;
+        position: relative;
+        z-index: 101;
     }
     
     .hamburger {
         display: flex;
+        z-index: 1001;
+        position: relative;
+        -webkit-user-select: none;
+        user-select: none;
     }
     
     nav .navigation ul {
         position: fixed;
         top: 0;
-        left: -100%;
+        left: 0;
+        width: 100vw;
         width: 100%;
+        max-width: 100%;
         height: 100vh;
+        height: 100dvh;
         background: var(--bg-color);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: 0.3s;
-        z-index: 999;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform: translateX(-100%);
+        opacity: 0;
+        z-index: 1000;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-top: 80px;
+        padding-bottom: 20px;
+        will-change: transform;
+        visibility: hidden;
+        -webkit-user-select: none;
+        user-select: none;
     }
     
     nav .navigation ul.active {
-        left: 0;
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
     
     nav .navigation ul li {
         margin: 20px 0;
+        pointer-events: auto;
+        z-index: 1000;
     }
     
     nav .navigation ul li a {
         font-size: 1.2rem;
+        pointer-events: auto;
+        z-index: 1000;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+    }
+    
+    nav .navigation ul li a:active {
+        opacity: 0.8;
     }
     
     #home h1 {
@@ -2093,8 +2157,62 @@ body[data-theme="dark"] .faq-toggle {
     .team-section {
         padding: 60px 5vw !important;
     }
+    
+    /* Mobile Menu - Admission Button Styling */
+    nav .navigation ul li a.admission-btn {
+        background: var(--secondary-color);
+        color: var(--white) !important;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    
+    nav .navigation ul li a.admission-btn:active {
+        transform: scale(0.98);
+    }
+    
+    /* Mobile Menu - Dark Mode Toggle */
+    #dark-mode-toggle {
+        z-index: 1001;
+        position: relative;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        padding: 10px;
+    }
+    
+    #dark-mode-toggle:active {
+        opacity: 0.8;
+    }
+    
+    /* Android-specific nav fixes */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+    
+    /* CSS Classes for inline styles */
+    .hidden {
+        display: none !important;
+    }
+    
+    .about-hero-bg {
+        background-image: url('img/back2.jpeg');
+        background-size: cover;
+        background-position: center;
+    }
+    
     /* Mobile-only font size adjustments for small iOS devices */
     input, textarea, select {
         font-size: 16px !important; /* Prevents iOS auto-zoom */
+    }
+    
+    /* Android-specific touch fixes */
+    * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
     }
 }

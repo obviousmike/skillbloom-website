@@ -1,3 +1,6 @@
+// Global DOM Elements
+const body = document.body;
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -60,22 +63,109 @@ updateCountdown();
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.navigation ul');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    // Function to prevent scroll
+    const preventScroll = (e) => {
+        e.preventDefault();
+    };
+    
+    // Function to toggle menu
+    const toggleMenu = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (navMenu.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+            body.style.position = 'fixed';
+            body.style.width = '100%';
+            body.style.height = '100%';
+            
+            // Add scroll prevention for mobile
+            document.addEventListener('touchmove', preventScroll, { passive: false });
+            window.addEventListener('scroll', preventScroll, { passive: false });
+        } else {
+            body.style.overflow = '';
+            body.style.position = '';
+            body.style.width = '';
+            body.style.height = '';
+            
+            // Remove scroll prevention
+            document.removeEventListener('touchmove', preventScroll);
+            window.removeEventListener('scroll', preventScroll);
+        }
+    };
+    
+    // Handle both click and touchstart for better Android support
+    hamburger.addEventListener('click', toggleMenu, { passive: false });
+    hamburger.addEventListener('touchstart', toggleMenu, { passive: false });
 
-// Close menu when clicking on a link
-document.querySelectorAll('.navigation ul li a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
+    // Close menu when clicking on a link
+    document.querySelectorAll('.navigation ul li a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.style.overflow = '';
+            body.style.position = '';
+            body.style.width = '';
+            body.style.height = '';
+            
+            document.removeEventListener('touchmove', preventScroll);
+            window.removeEventListener('scroll', preventScroll);
+        });
+        
+        // Also handle touchstart for better mobile support
+        link.addEventListener('touchstart', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.style.overflow = '';
+            body.style.position = '';
+            body.style.width = '';
+            body.style.height = '';
+            
+            document.removeEventListener('touchmove', preventScroll);
+            window.removeEventListener('scroll', preventScroll);
+        }, { passive: true });
     });
-});
+    
+    // Close menu when clicking outside of it
+    document.addEventListener('click', (e) => {
+        const isClickingMenu = navMenu.contains(e.target);
+        const isClickingHamburger = hamburger.contains(e.target);
+        
+        if (!isClickingMenu && !isClickingHamburger && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.style.overflow = '';
+            body.style.position = '';
+            body.style.width = '';
+            body.style.height = '';
+            
+            document.removeEventListener('touchmove', preventScroll);
+            window.removeEventListener('scroll', preventScroll);
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            body.style.overflow = '';
+            body.style.position = '';
+            body.style.width = '';
+            body.style.height = '';
+            
+            document.removeEventListener('touchmove', preventScroll);
+            window.removeEventListener('scroll', preventScroll);
+        }
+    });
+}
 
 // Dark mode toggle
 const darkModeToggle = document.getElementById('dark-mode-toggle');
-const body = document.body;
 
 darkModeToggle.addEventListener('click', () => {
     body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
@@ -203,4 +293,4 @@ function moveCarousel(direction) {
     // Apply transform
     track.style.transform = `translateX(${newX}px)`;
 }
-
+
