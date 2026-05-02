@@ -285,6 +285,7 @@ window.addEventListener('DOMContentLoaded', () => {
             'art': 'Creative Art',
             'entrepreneurship': 'Business',
             'formulation': 'Product Formulation',
+            'technology': 'Technology & Computing',
             'admission': 'Admission',
             'about': 'About Us'
         };
@@ -292,7 +293,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let breadcrumbHTML = `<a href="index.html"><i class="fas fa-home"></i> Home</a> <span> / </span>`;
         
         // Check if it's a school page to add the intermediate step
-        const schoolPages = ['fashion', 'beauty', 'art', 'entrepreneurship', 'formulation'];
+        const schoolPages = ['fashion', 'beauty', 'art', 'entrepreneurship', 'formulation', 'technology'];
         if (schoolPages.includes(pageName)) {
             breadcrumbHTML += `<a href="index.html#schools">Schools</a> <span>/</span>`;
         }
