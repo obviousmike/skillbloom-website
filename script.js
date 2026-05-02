@@ -340,3 +340,16 @@ window.addEventListener('DOMContentLoaded', () => {
         statNumbers.forEach(el => counterObserver.observe(el));
     }
 });
+
+// Preloader Logic
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('hide');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 600);
+        }, 500); // minimum show time
+    }
+});
