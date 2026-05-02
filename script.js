@@ -65,21 +65,43 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// Hamburger menu toggle
+// Hamburger menu toggle — Drawer Navigation
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.navigation ul');
 
+// Create drawer overlay
+const navOverlay = document.createElement('div');
+navOverlay.className = 'nav-overlay';
+document.body.appendChild(navOverlay);
+
+function openDrawer() {
+    navMenu.classList.add('active');
+    hamburger.classList.add('active');
+    navOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+    navMenu.classList.remove('active');
+    hamburger.classList.remove('active');
+    navOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
 hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
+    if (navMenu.classList.contains('active')) {
+        closeDrawer();
+    } else {
+        openDrawer();
+    }
 });
 
-// Close menu when clicking on a link
+// Close drawer when clicking overlay
+navOverlay.addEventListener('click', closeDrawer);
+
+// Close drawer when clicking on a link
 document.querySelectorAll('.navigation ul li a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
+    link.addEventListener('click', closeDrawer);
 });
 
 // Dark mode toggle
@@ -281,5 +303,40 @@ window.addEventListener('DOMContentLoaded', () => {
         
         breadcrumbNav.innerHTML = breadcrumbHTML;
         document.body.appendChild(breadcrumbNav);
+    }
+
+    // Animated number counters for stats section
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const text = el.textContent.trim();
+                    const hasPlus = text.includes('+');
+                    const hasPercent = text.includes('%');
+                    const numericValue = parseInt(text.replace(/[^0-9]/g, ''), 10);
+                    
+                    if (isNaN(numericValue)) return;
+                    
+                    let current = 0;
+                    const duration = 2000;
+                    const step = Math.max(1, Math.floor(numericValue / (duration / 16)));
+                    
+                    const counter = setInterval(() => {
+                        current += step;
+                        if (current >= numericValue) {
+                            current = numericValue;
+                            clearInterval(counter);
+                        }
+                        el.textContent = current + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
+                    }, 16);
+                    
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => counterObserver.observe(el));
     }
 });

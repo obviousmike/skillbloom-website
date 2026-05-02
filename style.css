@@ -329,10 +329,22 @@ nav .navigation ul li a.admission-btn:hover {
     max-width: 900px;
 }
 
+@keyframes heroSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 #home h1 {
     color: var(--white);
     margin-bottom: 25px;
     letter-spacing: -1px;
+    animation: heroSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
 }
 
 #home p {
@@ -341,9 +353,11 @@ nav .navigation ul li a.admission-btn:hover {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    animation: heroSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
 }
 
 #home .btn {
+    animation: heroSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -382,11 +396,33 @@ nav .navigation ul li a.admission-btn:hover {
     background: #e68600;
 }
 
+/* Section Wave Divider */
+.section-wave {
+    position: relative;
+}
+
+#home::after {
+    border-radius: 0;
+}
+
+.why-choose-us::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--bg-color);
+    clip-path: ellipse(55% 100% at 50% 100%);
+    z-index: 5;
+}
+
 /* Why Choose Us Section */
 .why-choose-us {
     padding: 100px 8vw;
     background: var(--bg-color);
     text-align: center;
+    position: relative;
 }
 
 .section-header {
@@ -558,6 +594,25 @@ button[type="submit"].orange {
     text-align: left;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid var(--glass-border);
+    position: relative;
+    counter-increment: step-counter;
+}
+
+.fea-box::before {
+    content: counter(step-counter, decimal-leading-zero);
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    opacity: 0.07;
+    line-height: 1;
+    font-family: 'Outfit', sans-serif;
+}
+
+.fea-base {
+    counter-reset: step-counter;
 }
 
 .fea-box:hover {
@@ -567,9 +622,22 @@ button[type="submit"].orange {
 }
 
 .fea-box i {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--secondary-color);
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: rgba(252, 149, 8, 0.1);
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+.fea-box:hover i {
+    background: var(--secondary-color);
+    color: var(--white);
 }
 
 .fea-box h3 {
@@ -645,18 +713,25 @@ button[type="submit"].orange {
     font-size: 0.7rem;
     color: var(--white);
     background: var(--secondary-color);
-    padding: 4px 10px;
-    border-radius: 4px;
+    padding: 5px 14px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 700;
     margin-top: 15px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
+    animation: badgePulse 2.5s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(252, 149, 8, 0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(252, 149, 8, 0); }
 }
 
 #schools .schools .details .reg-badge:hover {
     background: var(--primary-color);
+    animation: none;
 }
 
 #schools .schools .details .school-title-link {
@@ -857,30 +932,46 @@ button[type="submit"].orange {
 #contact .contact-form input,
 #contact .contact-form textarea {
     margin: 10px 0;
-    padding: 15px;
+    padding: 16px 20px;
     background: var(--card-bg);
     color: var(--text-dark);
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
     outline: none;
     font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+#contact .contact-form input:focus,
+#contact .contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(44, 63, 126, 0.1);
 }
 
 #contact .contact-form textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
 }
 
 #contact .contact-form button {
-    padding: 15px;
+    padding: 16px;
     background: var(--secondary-color);
     color: var(--white);
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(252, 149, 8, 0.25);
+    margin-top: 5px;
+}
+
+#contact .contact-form button:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(44, 63, 126, 0.3);
 }
 
 
@@ -902,10 +993,12 @@ button[type="submit"].orange {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    padding: 30px;
+    padding: 35px 30px 30px;
     border-radius: 16px;
     box-shadow: var(--shadow-soft);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    border-left: 4px solid var(--secondary-color);
 }
 
 #testimonials .testimonial:hover {
@@ -914,10 +1007,30 @@ button[type="submit"].orange {
     border-color: var(--secondary-color);
 }
 
+#testimonials .testimonial .quote-icon {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    opacity: 0.3;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
 #testimonials .testimonial p {
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: var(--text-light);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+#testimonials .stars {
+    margin-bottom: 18px;
+}
+
+#testimonials .stars i {
+    color: #f5b731;
+    font-size: 0.9rem;
+    margin-right: 2px;
 }
 
 #testimonials .client {
@@ -931,6 +1044,7 @@ button[type="submit"].orange {
     border-radius: 50%;
     margin-right: 15px;
     object-fit: cover;
+    border: 3px solid var(--secondary-color);
 }
 
 #testimonials .client h6 {
@@ -945,22 +1059,8 @@ button[type="submit"].orange {
 
 /* FAQ Accordion Section */
 #faq {
-    padding: 60px 20px;
-    background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(76, 175, 80, 0.05) 100%);
-}
-
-#faq h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-align: center;
-    color: var(--text-dark);
-}
-
-#faq > p {
-    text-align: center;
-    margin-bottom: 40px;
-    color: var(--text-light);
-    font-size: 1.1rem;
+    padding: 80px 8vw;
+    background: linear-gradient(135deg, rgba(44, 63, 126, 0.04) 0%, rgba(252, 149, 8, 0.04) 100%);
 }
 
 .faq-container {
@@ -2069,31 +2169,81 @@ body[data-theme="dark"] .faq-toggle {
     .hamburger {
         display: flex;
     }
-    
+
+    /* Drawer backdrop overlay */
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Navigation Drawer from the right */
     nav .navigation ul {
         position: fixed;
         top: 0;
-        left: -100%;
-        width: 100%;
+        right: -300px;
+        width: 280px;
         height: 100vh;
+        height: 100dvh;
         background: var(--bg-color);
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: 0.3s;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 100px 30px 40px;
+        transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 999;
+        box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+        overflow-y: auto;
     }
     
     nav .navigation ul.active {
-        left: 0;
+        right: 0;
     }
     
     nav .navigation ul li {
-        margin: 20px 0;
+        margin: 0;
+        width: 100%;
     }
     
     nav .navigation ul li a {
-        font-size: 1.2rem;
+        font-size: 1.05rem;
+        display: block;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--glass-border);
+        width: 100%;
+    }
+
+    nav .navigation ul li:last-child a {
+        border-bottom: none;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    /* Hamburger X animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
     }
     
     #home h1 {
