@@ -1882,7 +1882,7 @@ body[data-theme="dark"] .faq-toggle {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: var(--secondary-color);
+    color: var(--white);
 }
 
 .stat-label {

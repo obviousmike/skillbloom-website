@@ -336,7 +336,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     counterObserver.unobserve(el);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1 });
 
         statNumbers.forEach(el => counterObserver.observe(el));
     }
@@ -376,6 +376,6 @@ window.addEventListener('DOMContentLoaded', () => {
             setTimeout(type, typeSpeed);
         }
 
-        setTimeout(type, 1000);
+        setTimeout(type, 500);
     }
 });
