@@ -340,4 +340,42 @@ window.addEventListener('DOMContentLoaded', () => {
 
         statNumbers.forEach(el => counterObserver.observe(el));
     }
+
+
+    // Typing Animation for Hero Header
+    const changingText = document.getElementById('changing-text');
+    if (changingText) {
+        const words = ['Art', 'Beauty', 'Fashion', 'Business', 'Formulation', 'Technology'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 150;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                changingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 100;
+            } else {
+                changingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 200;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at the end of the word
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        setTimeout(type, 1000);
+    }
 });
