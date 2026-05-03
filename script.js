@@ -353,20 +353,23 @@ window.addEventListener('DOMContentLoaded', () => {
 
         function type() {
             const currentWord = words[wordIndex];
+            const visibleText = isDeleting 
+                ? currentWord.substring(0, charIndex - 1) 
+                : currentWord.substring(0, charIndex + 1);
+            
+            changingText.textContent = visibleText;
             
             if (isDeleting) {
-                changingText.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
                 typeSpeed = 100;
             } else {
-                changingText.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
                 typeSpeed = 200;
             }
 
             if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typeSpeed = 2000; // Pause at the end of the word
+                typeSpeed = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
@@ -376,6 +379,6 @@ window.addEventListener('DOMContentLoaded', () => {
             setTimeout(type, typeSpeed);
         }
 
-        setTimeout(type, 500);
+        type(); // Start immediately
     }
 });
