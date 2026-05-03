@@ -233,6 +233,7 @@ function showSlide(n) {
 
 // School Carousel Navigation
 function moveCarousel(direction, button) {
+    if (!button) return; // Guard against missing context
     // Find the closest carousel-track to the clicked button
     const carouselContainer = button.closest('.carousel-container');
     const track = carouselContainer.querySelector('.carousel-track');
