@@ -200,15 +200,24 @@ nav .navigation ul li a.admission-btn:hover {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1010;
+    padding: 12px; /* Increased hit area */
+    margin-right: -12px; /* Offset padding */
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.hamburger:active {
+    background: rgba(44, 63, 126, 0.05);
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
     background: var(--primary-color);
-    margin: 3px 0;
+    margin: 2.5px 0;
     transition: 0.3s;
+    border-radius: 2px;
 }
 
 /* Reading Progress Bar */
@@ -229,6 +238,10 @@ nav .navigation ul li a.admission-btn:hover {
     font-size: 1.5rem;
     cursor: pointer;
     transition: 0.3s;
+    padding: 10px;
+    margin-right: -10px;
+    z-index: 1010;
+    touch-action: manipulation;
 }
 
 .dark-mode-btn:hover {
@@ -2256,8 +2269,9 @@ body[data-theme="dark"] .faq-toggle {
     nav .navigation ul {
         position: fixed;
         top: 0;
-        right: -300px;
-        width: 280px;
+        right: -100%; /* More reliable hidden state */
+        width: 80%;
+        max-width: 320px;
         height: 100vh;
         height: 100dvh;
         background: var(--bg-color);
@@ -2265,14 +2279,18 @@ body[data-theme="dark"] .faq-toggle {
         justify-content: flex-start;
         align-items: flex-start;
         padding: 100px 30px 40px;
-        transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        z-index: 999;
-        box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), right 0.4s ease;
+        z-index: 1005;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
         overflow-y: auto;
+        pointer-events: none; /* Block clicks when hidden */
+        visibility: hidden;
     }
     
     nav .navigation ul.active {
         right: 0;
+        pointer-events: auto;
+        visibility: visible;
     }
     
     nav .navigation ul li {

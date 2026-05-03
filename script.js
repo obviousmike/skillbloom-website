@@ -66,43 +66,66 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Hamburger menu toggle — Drawer Navigation
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.navigation ul');
+const initMobileMenu = () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.navigation ul');
+    
+    if (!hamburger || !navMenu) return;
 
-// Create drawer overlay
-const navOverlay = document.createElement('div');
-navOverlay.className = 'nav-overlay';
-document.body.appendChild(navOverlay);
-
-function openDrawer() {
-    navMenu.classList.add('active');
-    hamburger.classList.add('active');
-    navOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeDrawer() {
-    navMenu.classList.remove('active');
-    hamburger.classList.remove('active');
-    navOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-hamburger.addEventListener('click', () => {
-    if (navMenu.classList.contains('active')) {
-        closeDrawer();
-    } else {
-        openDrawer();
+    // Create drawer overlay if it doesn't exist
+    let navOverlay = document.querySelector('.nav-overlay');
+    if (!navOverlay) {
+        navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay';
+        document.body.appendChild(navOverlay);
     }
-});
 
-// Close drawer when clicking overlay
-navOverlay.addEventListener('click', closeDrawer);
+    function openDrawer() {
+        navMenu.classList.add('active');
+        hamburger.classList.add('active');
+        navOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-// Close drawer when clicking on a link
-document.querySelectorAll('.navigation ul li a').forEach(link => {
-    link.addEventListener('click', closeDrawer);
-});
+    function closeDrawer() {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    const toggleDrawer = (e) => {
+        if (e) e.preventDefault();
+        if (navMenu.classList.contains('active')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    };
+
+    hamburger.addEventListener('click', toggleDrawer);
+    // Support touch devices for faster interaction
+    hamburger.addEventListener('touchstart', (e) => {
+        // Prevent ghost clicks
+        if (e.cancelable) e.preventDefault();
+        toggleDrawer();
+    }, { passive: false });
+
+    // Close drawer when clicking overlay
+    navOverlay.addEventListener('click', closeDrawer);
+    navOverlay.addEventListener('touchstart', (e) => {
+        if (e.cancelable) e.preventDefault();
+        closeDrawer();
+    }, { passive: false });
+
+    // Close drawer when clicking on a link
+    document.querySelectorAll('.navigation ul li a').forEach(link => {
+        link.addEventListener('click', closeDrawer);
+    });
+};
+
+// Initialize mobile menu
+initMobileMenu();
 
 // Dark mode toggle
 const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -153,18 +176,23 @@ progressBar.className = 'progress-bar';
 document.body.appendChild(progressBar);
 
 window.addEventListener('scroll', () => {
+    const navMenu = document.querySelector('.navigation ul');
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
     // Reading Progress Bar Logic
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (scrollTop / height) * 100;
-    progressBar.style.width = scrolled + "%";
+    const progressBar = document.querySelector('.progress-bar');
+    if (progressBar) progressBar.style.width = scrolled + "%";
 
     // Smart Navbar: Hide on scroll down, show on scroll up
     if (Math.abs(lastScrollTop - scrollTop) <= scrollThreshold) return;
 
     // Don't hide navbar if mobile menu is open
-    if (navMenu && navMenu.classList.contains('active')) return;
+    if (navMenu && navMenu.classList.contains('active')) {
+        if (navbar) navbar.style.transform = 'translateY(0)';
+        return;
+    }
 
     if (!navbar) return;
 
